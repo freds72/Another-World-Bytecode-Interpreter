@@ -16,7 +16,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#include "zlib.h"
+// #include "zlib.h"
 #include "file.h"
 
 
@@ -68,6 +68,7 @@ struct stdFile : File_impl {
 	}
 };
 
+/**
 struct zlibFile : File_impl {
 	gzFile _fp;
 	zlibFile() : _fp(0) {}
@@ -104,10 +105,11 @@ struct zlibFile : File_impl {
 		}
 	}
 };
+*/
 
 File::File(bool gzipped) {
 	if (gzipped) {
-		_impl = new zlibFile;
+		// _impl = new zlibFile;
 	} else {
 		_impl = new stdFile;
 	}

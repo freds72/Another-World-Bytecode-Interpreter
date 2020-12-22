@@ -88,8 +88,8 @@ void Resource::readEntries() {
 		memEntry->bufPtr = 0; f.readUint16BE();
 		memEntry->unk4 = f.readUint16BE();
 		memEntry->rankNum = f.readByte();
-		memEntry->bankId = f.readByte();
-		memEntry->bankOffset = f.readUint32BE();
+		memEntry->bankId = _numMemList;  f.readByte();
+		memEntry->bankOffset = 0; f.readUint32BE();
 		memEntry->unkC = f.readUint16BE();
 		memEntry->packedSize = f.readUint16BE();
 		memEntry->unk10 = f.readUint16BE();
@@ -98,6 +98,7 @@ void Resource::readEntries() {
     if (memEntry->state == MEMENTRY_STATE_END_OF_MEMLIST) {
       break;
     }
+	
 
 		//Memory tracking
 		if (memEntry->packedSize==memEntry->size)
@@ -121,6 +122,24 @@ void Resource::readEntries() {
 				resTypeToString(memEntry->type),
 				memEntry->size,
 				memEntry->size ? (memEntry->size-memEntry->packedSize) / (float)memEntry->size * 100.0f : 0.0f);
+
+
+		// freds72
+		// read resource - decompress - write back
+		// if (_numMemList != 0x69) {
+		// 	File out = File(false);
+		// 	char outName[10];
+		// 	sprintf(outName, "res%02x", _numMemList);
+		// 
+		// 	out.open(outName, "c:\\tmp", "wb");
+		// 
+		// 	uint8_t* tmp = (uint8_t*)malloc(memEntry->size);
+		// 	readBank(memEntry, tmp);
+		// 	out.write(tmp, memEntry->size);
+		// 	out.close();
+		// 
+		// 	free(tmp);
+		// }
 
 		resourceCounter++;
 

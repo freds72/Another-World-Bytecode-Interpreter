@@ -12,3 +12,7 @@ TODO
 
 .DS_Store
 DerivedData
+/.vs
+/CMakeFiles
+/CMakeCache.txt
+*.filters

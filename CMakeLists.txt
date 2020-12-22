@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 11)
 
 add_definitions(-DAUTO_DETECT_PLATFORM)
 add_definitions(-DBYPASS_PROTECTION)
-set(CMAKE_CXX_FLAGS " -Os -g -fno-rtti -fno-exceptions -Wall -Wno-unknown-pragmas -Wshadow -Wundef -Wwrite-strings -Wnon-virtual-dtor -Wno-multichar")
+set(CMAKE_CXX_FLAGS " -Os -g -fno-rtti -fno-exceptions")
 
 add_executable(raw
         src/bank.cpp
@@ -27,5 +27,4 @@ add_executable(raw
 find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS})
 target_link_libraries(raw ${SDL2_LIBRARIES})
-target_link_libraries(raw z)
 
